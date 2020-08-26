@@ -2471,6 +2471,30 @@ describe('Product Component class', () => {
           });
         });
       });
+
+      describe('priceAccessibilityLabel', () => {
+        it('returns the sale price label if the selected variant`s compare at price is not null', () => {
+          product.selectedVariant.compareAtPriceV2 = 20;
+          assert.equal(product.priceAccessibilityLabel, product.options.text.salePriceAccessibilityLabel);
+        });
+
+        it('returns the regular price label if the selected variant`s compare at price is null', () => {
+          product.selectedVariant.compareAtPriceV2 = null;
+          assert.equal(product.priceAccessibilityLabel, product.options.text.regularPriceAccessibilityLabel);
+        });
+      });
+
+      describe('compareAtPriceAccessibilityLabel', () => {
+        it('returns the regular price label if the selected variant`s compare at price is not null', () => {
+          product.selectedVariant.compareAtPriceV2 = 20;
+          assert.equal(product.compareAtPriceAccessibilityLabel, product.options.text.regularPriceAccessibilityLabel);
+        });
+
+        it('returns an emprt string if the selected variant`s compare at price is null', () => {
+          product.selectedVariant.compareAtPriceV2 = null;
+          assert.equal(product.compareAtPriceAccessibilityLabel, '');
+        });
+      });
     });
   });
 });

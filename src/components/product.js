@@ -252,7 +252,9 @@ export default class Product extends Component {
       quantityClass: this.quantityClass,
       priceClass: this.priceClass,
       formattedPrice: this.formattedPrice,
+      priceAccessibilityLabel: this.priceAccessibilityLabel,
       formattedCompareAtPrice: this.formattedCompareAtPrice,
+      compareAtPriceAccessibilityLabel: this.compareAtPriceAccessibilityLabel,
       showUnitPrice: this.showUnitPrice,
       formattedUnitPrice: this.formattedUnitPrice,
       formattedUnitPriceBaseUnit: this.formattedUnitPriceBaseUnit,
@@ -841,4 +843,19 @@ export default class Product extends Component {
     return altText || this.model.title;
   }
 
+  get priceAccessibilityLabel() {
+    if (this.formattedCompareAtPrice === '') {
+      return this.options.text.regularPriceAccessibilityLabel;
+    }
+
+    return this.options.text.salePriceAccessibilityLabel;
+  }
+
+  get compareAtPriceAccessibilityLabel() {
+    if (this.formattedCompareAtPrice === '') {
+      return '';
+    }
+
+    return this.options.text.regularPriceAccessibilityLabel;
+  }
 }
